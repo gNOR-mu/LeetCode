@@ -7,9 +7,9 @@ class Solution {
         int largo = merged.length;
         if ((largo & 1) == 0) {
             int mitad = largo / 2;
-            return ((merged[mitad] + merged[mitad - 1]) / 2.0);
+            return (merged[mitad] + merged[mitad - 1]) / 2.0;
         } else {
-            return Double.valueOf(merged[Math.ceilDiv(largo, 2) - 1]);
+            return merged[Math.ceilDiv(largo, 2) - 1];
         }
     }
 }
