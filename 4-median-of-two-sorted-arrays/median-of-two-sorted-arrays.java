@@ -1,13 +1,15 @@
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int[] merged = IntStream.concat(IntStream.of(nums1), IntStream.of(nums2)).toArray();
-        int[] sorted = Arrays.stream(merged).sorted().toArray();
-        int largo = sorted.length;
+        int[] merged = new int[nums1.length + nums2.length];
+        System.arraycopy(nums1, 0, merged, 0, nums1.length);
+        System.arraycopy(nums2, 0, merged, nums1.length, nums2.length);
+        merged = Arrays.stream(merged).sorted().toArray();
+        int largo = merged.length;
         if ((largo & 1) == 0) {
             int mitad = largo / 2;
-            return ((sorted[mitad] + sorted[mitad - 1]) / 2.0);
+            return ((merged[mitad] + merged[mitad - 1]) / 2.0);
         } else {
-            return Double.valueOf(sorted[Math.ceilDiv(largo, 2) - 1]);
+            return Double.valueOf(merged[Math.ceilDiv(largo, 2) - 1]);
         }
     }
 }
