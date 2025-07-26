@@ -3,7 +3,7 @@ class Solution {
         int[] merged = new int[nums1.length + nums2.length];
         System.arraycopy(nums1, 0, merged, 0, nums1.length);
         System.arraycopy(nums2, 0, merged, nums1.length, nums2.length);
-        merged = Arrays.stream(merged).sorted().toArray();
+        Arrays.sort(merged);
         int largo = merged.length;
         if ((largo & 1) == 0) {
             int mitad = largo / 2;
