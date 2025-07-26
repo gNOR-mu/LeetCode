@@ -1,15 +1,24 @@
 class Solution {
     public int divide(int dividend, int divisor) {
-     if (dividend == 0) return 0;
-        if (dividend == Integer.MIN_VALUE && divisor == -1) return Integer.MAX_VALUE; // overflow
+        if (dividend == Integer.MIN_VALUE && divisor == -1)
+            return Integer.MAX_VALUE; // overflow
         boolean resultadoNegativo = (dividend < 0) ^ (divisor < 0);
-        long dividendoL = Math.abs((long)dividend);
-        long divisorL = Math.abs((long)divisor);
+        int dividendoL = dividend;
+        int divisorL = divisor;
+        if (dividendoL > 0)
+            dividendoL = -dividendoL;
+        if (divisorL > 0)
+            divisorL = -divisorL;
         int cociente = 0;
-        if(divisor==1) return resultadoNegativo?(int)~(dividendoL-1):dividend;
-        while (dividendoL >= divisorL) {
-            dividendoL -= divisorL;
-            cociente++;
+        while (dividendoL <= divisorL) {
+            int temp = divisorL;
+            int multiple = 1;
+            while (dividendoL - temp <= temp && temp >= (Integer.MIN_VALUE >> 1)) {
+                temp <<= 1;
+                multiple <<= 1;
+            }
+            dividendoL -= temp;
+            cociente += multiple;
         }
         return resultadoNegativo ? -cociente : cociente;
     }
