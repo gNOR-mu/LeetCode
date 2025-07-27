@@ -1,26 +1,16 @@
 class Solution {
     public int mySqrt(int x) {
-       if (x == 1) {
-            return x;
+             int l = 1;
+        int r = x;
+        while (l <= r) {
+            int mid = (r - l) / 2 + l;
+            if (mid > x / mid)
+                r = mid - 1;
+            else if (mid < x / mid)
+                l = mid + 1;
+            else
+                return mid;
         }
-        int div = x / 2;
-
-        while ((double) div * div > x) {
-            div /= 2;
-        }
-        if (div * div == x)
-            return div;
-        int res = 0;
-        for (int i = div; i <= 2 * div; i++) {
-            double multi =(double) i * i;
-            if (multi == x) {
-                return i;
-            }
-            if (multi > x) {
-                return i - 1;
-            }
-            res = i;
-        }
-        return res;
+        return r;
     }
 }
