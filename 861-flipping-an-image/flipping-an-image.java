@@ -4,7 +4,7 @@ class Solution {
         for (int i = 0; i < image.length; i++) {
             int column = 0;
             for (int j = image[0].length - 1; j >= 0; j--) {
-                res[i][column++] = image[i][j] == 0 ? 1 : 0;
+                res[i][column++] = image[i][j]^1;
             }
         }
         return res;
