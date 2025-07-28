@@ -8,14 +8,11 @@ class Solution {
         int nIguales = 0;
         for (int n : nums) {
             if (n < pivot) {
-                solucion[nMenores] = n;
-                nMenores++;
+                solucion[nMenores++] = n;
             } else if (n == pivot) {
-                iguales[nIguales] = n;
-                nIguales++;
+                iguales[nIguales++] = n;
             } else {
-                mayores[nMayores] = n;
-                nMayores++;
+                mayores[nMayores++] = n;
             }
         }
         System.arraycopy(iguales, 0, solucion, nMenores, nIguales);
