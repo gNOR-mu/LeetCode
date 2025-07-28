@@ -14,7 +14,6 @@ class Solution {
         ListNode l2Aux = list2;
         ListNode anterior = null;
         ListNode siguiente = null;
-        ListNode ultimoL2 = null;
 
         for (int i = 0; i <= b; i++) {
             if (i == a - 1) {
@@ -24,13 +23,10 @@ class Solution {
             }
             l1Aux = l1Aux.next;
         }
-        while (ultimoL2 == null) {
-            if (l2Aux.next == null) {
-                ultimoL2 = l2Aux;
-            }
+        while (l2Aux.next != null) {
             l2Aux = l2Aux.next;
         }
-        ultimoL2.next = siguiente;
+        l2Aux.next = siguiente;
         anterior.next = list2;
         return list1;
     }
