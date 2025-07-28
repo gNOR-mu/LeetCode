@@ -10,9 +10,6 @@
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        if (head.next == null) {
-            return null;
-        }
         Map<Integer, ListNode> mapa = new HashMap<>();
         ListNode headAux = head;
         int contador = 0;
