@@ -8,14 +8,12 @@
  */
 class Solution {
     public void deleteNode(ListNode node) {
-        ListNode initial = node;
-
-        while(initial != null){
-            initial.val = initial.next.val;
-            if(initial.next.next ==null){
-                initial.next = null;
+        while(node != null){
+            node.val = node.next.val;
+            if(node.next.next ==null){
+                node.next = null;
             }
-            initial = initial.next;
+            node = node.next;
         }
     }
 }
