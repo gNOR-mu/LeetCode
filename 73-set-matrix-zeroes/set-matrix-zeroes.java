@@ -1,21 +1,20 @@
 class Solution {
     public void setZeroes(int[][] matrix) {
-        Set<Integer> colZero = new HashSet<>();
+        boolean[] rowZero = new boolean[matrix.length];
+        boolean[] colZero = new boolean[matrix[0].length];
         for (int i = 0; i < matrix.length; i++) {
-            boolean mustBeZero = false;
             for (int j = 0; j < matrix[i].length; j++) {
                 if (matrix[i][j] == 0) {
-                    mustBeZero = true;
-                    colZero.add(j);
+                    rowZero[i] = true;
+                    colZero[j] = true;
                 }
             }
-            if (mustBeZero) {
-                matrix[i] = new int[matrix[i].length];
-            }
         }
-        for (int col : colZero) {
-            for (int i = 0; i < matrix.length; i++) {
-                matrix[i][col] = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (rowZero[i] || colZero[j]) {
+                    matrix[i][j] = 0;
+                }
             }
         }
     }
