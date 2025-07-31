@@ -1,23 +1,13 @@
 class Solution {
     public static int sumOfMultiples(int n) {
-        boolean[] c = new boolean[n + 1];
+        return sumDiv(n, 3) + sumDiv(n, 5) + sumDiv(n, 7)
+                - sumDiv(n, 15) - sumDiv(n, 21) - sumDiv(n, 35)
+                + sumDiv(n, 105);
+    }
 
-        for (int i = 3; i <= n; i += 3) {
-            c[i] = true;
-        }
-        for (int i = 5; i <= n; i += 5) {
-            c[i] = true;
-        }
-        for (int i = 7; i <= n; i += 7) {
-            c[i] = true;
-        }
-        int sum = 0;
-        for (int i = 3; i <= n; i++) {
-            if (c[i]) {
-                sum += i;
-
-            }
-        }
-        return sum;
+    // Suma de múltiplos de k hasta n
+    private static int sumDiv(int n, int k) {
+        int m = n / k;
+        return k * m * (m + 1) / 2;
     }
 }
