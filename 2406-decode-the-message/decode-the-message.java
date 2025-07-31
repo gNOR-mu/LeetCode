@@ -4,12 +4,15 @@ class Solution {
         char[] decode = new char[26];
         char start = 'a';
 
-        for (int i = 0; start <= 'z'; i++) {
+        for (int i = 0; i < key.length(); i++) {
             char c = key.charAt(i);
             if (c != ' ') {
                 int val = c - 'a';
                 if (decode[val] == '\0') {
                     decode[val] = start++;
+                    if (start > 'z') {
+                        break;
+                    }
                 }
             }
         }
