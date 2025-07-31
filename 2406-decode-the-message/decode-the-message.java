@@ -4,20 +4,23 @@ class Solution {
         char[] decode = new char[26];
         char start = 'a';
 
-        for (int i = 0; i < key.length(); i++) {
+        for (int i = 0; start <= 'z'; i++) {
             char c = key.charAt(i);
-            int val = c - 'a';
-            if (c != ' ' && decode[val] == '\u0000') {
-                decode[val] = start++;
-                if (start > 'z') {
-                    break;
+            if (c != ' ') {
+                int val = c - 'a';
+                if (decode[val] == '\0') {
+                    decode[val] = start++;
                 }
             }
         }
 
         for (int i = 0; i < message.length(); i++) {
             char c = message.charAt(i);
-            sb.append(c != ' ' ? decode[c - 'a'] : c);
+            if (c != ' ') {
+                sb.append(decode[c - 'a']);
+            } else {
+                sb.append(' ');
+            }
         }
         return sb.toString();
     }
