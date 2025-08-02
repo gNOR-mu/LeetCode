@@ -1,9 +1,6 @@
 class Solution {
     public int diagonalSum(int[][] mat) {
         int sum = 0;
-        if (mat.length == 0) {
-            return mat[0][0];
-        }
         if ((mat.length & 1) == 1) {
             sum -= mat[mat.length / 2][mat.length / 2];
         }
