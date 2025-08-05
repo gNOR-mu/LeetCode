@@ -12,16 +12,17 @@ class Solution {
     public ListNode mergeNodes(ListNode head) {
         ListNode sol = new ListNode();
         ListNode solHead = sol;
+        int sum = 0;
         head = head.next;
-        while (head.next != null) {
-            if (head.val != 0) {
-                sol.val += head.val;
-            } else {
-                sol.next = new ListNode();
+        while (head != null) {
+            sum += head.val;
+            if (head.val == 0) {
+                sol.next = new ListNode(sum);
                 sol = sol.next;
+                sum = 0;
             }
             head = head.next;
         }
-        return solHead;
+        return solHead.next;
     }
 }
