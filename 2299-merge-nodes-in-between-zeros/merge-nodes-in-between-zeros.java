@@ -13,10 +13,10 @@ class Solution {
         ListNode sol = new ListNode();
         ListNode solHead = sol;
         head = head.next;
-        while (head != null) {
+        while (head.next != null) {
             if (head.val != 0) {
                 sol.val += head.val;
-            } else if (head.next != null) {
+            } else {
                 sol.next = new ListNode();
                 sol = sol.next;
             }
