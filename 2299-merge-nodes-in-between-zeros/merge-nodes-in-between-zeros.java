@@ -15,9 +15,8 @@ class Solution {
         int sum = 0;
         head = head.next;
         while (head != null) {
-            int val = head.val;
-            sum += val;
-            if (val == 0) {
+            sum += head.val;
+            if (head.val == 0) {
                 sol.next = new ListNode(sum);
                 sol = sol.next;
                 sum = 0;
