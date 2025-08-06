@@ -9,19 +9,19 @@
  * }
  */
 class Solution {
-        public ListNode middleNode(ListNode head) {
-        int total = 0;
-        int actual = 1;
-        ListNode resp = head;
-        ListNode tmp = head.next;
-        while (tmp != null) {
-            int mid = (++total / 2) + 1;
-            if (mid > actual) {
-                resp = resp.next;
-                actual = mid;
-            }
-            tmp = tmp.next;
+    public ListNode middleNode(ListNode head) {
+        if (head == null) {
+            return null;
         }
-        return ((total & 1) == 0 ? resp : resp.next);
+        if (head.next == null) {
+            return head;
         }
+        ListNode slow = head;
+        ListNode fast = head.next.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow.next == null ? slow : slow.next;
+    }
 }
