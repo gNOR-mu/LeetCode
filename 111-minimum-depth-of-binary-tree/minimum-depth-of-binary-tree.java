@@ -19,14 +19,14 @@ class Solution {
             return 0;
         Queue<TreeNode> q = new LinkedList<TreeNode>();
         int depth = 1;
-        q.add(root);
+        q.offer(root);
         while (!q.isEmpty()) {
             int size = q.size();
             for (int i = 0; i < size; i++) {
                 TreeNode node = q.poll();
                 if (node.left == null && node.right == null) return depth;
-                if (node.left != null) q.add(node.left);
-                if (node.right != null) q.add(node.right);
+                if (node.left != null) q.offer(node.left);
+                if (node.right != null) q.offer(node.right);
             }
             depth++;
         }
