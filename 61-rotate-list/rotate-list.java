@@ -10,7 +10,7 @@
  */
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null || head.next == null || k == 0) {
+        if (head == null) {
             return head;
         }
         List<ListNode> d = new ArrayList<>();
@@ -23,10 +23,8 @@ class Solution {
         if (k == 0) {
             return head;
         }
-        ListNode anterior = d.get(d.size() - k - 1);
-        ListNode res = anterior.next;
+        d.get(d.size() - k - 1).next = null;
         d.getLast().next = head;
-        anterior.next = null;
-        return res;
+        return d.get(d.size() - k);
     }
 }
