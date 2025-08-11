@@ -5,7 +5,7 @@ class Solution {
         // }
         // double p = Math.log10(n) / Math.log10(3);
         // return (int)p==p;
-        if (n < 1) {
+        if (n < 1 || (n&1)==0) {
             return false;
         }
         return 1_162_261_467 % n == 0;
