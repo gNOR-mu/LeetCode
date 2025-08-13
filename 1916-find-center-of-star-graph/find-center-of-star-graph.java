@@ -1,18 +1,10 @@
 class Solution {
     public int findCenter(int[][] edges) {
-        int[] f = new int[edges.length + 2];
-        int max = 0;
-        int idx =0;
-        for (int i = 0; i < edges.length; i++) {
-            f[edges[i][0]]++;
-            f[edges[i][1]]++;
+        if ((edges[0][0] == edges[1][0]) || (edges[0][0] == edges[1][1])) {
+            return edges[0][0];
         }
-        for (int i = 0; i < f.length; i++) {
-            if(f[i] >max){
-                max = f[i];
-                idx = i;
-            }
+        else{
+            return edges[0][1];
         }
-        return idx;
     }
 }
