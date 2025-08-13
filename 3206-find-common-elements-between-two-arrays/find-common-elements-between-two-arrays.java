@@ -2,7 +2,6 @@ class Solution {
     public int[] findIntersectionValues(int[] nums1, int[] nums2) {
         int[] f1 = new int[101];
         int[] f2 = new int[101];
-        int match = 0;
         int[] res = new int[2];
         for (int i = 0; i < nums1.length; i++) {
             f1[nums1[i]]++;
