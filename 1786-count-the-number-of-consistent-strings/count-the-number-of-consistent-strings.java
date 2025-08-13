@@ -7,15 +7,12 @@ class Solution {
         }
 
         for (int i = 0; i < words.length; i++) {
-            boolean isConsistent = true;
+            consistent++;
             for (int j = 0; j < words[i].length(); j++) {
                 if (!c.contains(words[i].charAt(j))) {
-                    isConsistent = false;
+                    consistent--;
                     break;
                 }
-            }
-            if(isConsistent){
-            consistent++;
             }
         }
         return consistent;
