@@ -25,15 +25,18 @@ class Solution {
             fast = fast.next.next;
         }
 
-        ListNode slow2 = slow;
-        ListNode invert = null;
-        while (slow2 != null) {
-            invert = new ListNode(slow2.val, invert);
-            slow2 = slow2.next;
+        ListNode invert = slow;
+        ListNode prev = null;
+        while (invert != null) {
+            ListNode tmp = invert.next;
+            invert.next = prev;
+            prev = invert;
+            invert = tmp;
         }
+        invert = prev;
 
         ListNode h2 = head;
-        while (h2 != slow && invert != null) {
+        while (invert != null) {
             if (h2.val != invert.val) {
                 return false;
             }
