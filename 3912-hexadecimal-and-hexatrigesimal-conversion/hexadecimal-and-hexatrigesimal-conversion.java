@@ -1,6 +1,7 @@
 class Solution {
     public String concatHex36(int n) {
-        return transform(16,n*n)+transform(36,n*n*n);
+        int n2 =n*n;
+        return transform(16,n2)+transform(36,n2*n);
     }
 
     static String transform(int base, int n) {
@@ -8,8 +9,11 @@ class Solution {
         while (n > 0) {
             int mod = n % base;
             n = n / base;
-            char c = (char) (mod > 9 ? 'A' + (mod - 10) : '0' + mod);
-            sb.insert(0, c);
+            if (mod > 9) {
+                sb.insert(0, (char) (mod + 55));
+            } else {
+                sb.insert(0, mod);
+            }
         }
         return sb.toString();
     }
