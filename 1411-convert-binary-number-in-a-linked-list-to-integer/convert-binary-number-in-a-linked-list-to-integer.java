@@ -10,8 +10,7 @@
  */
 class Solution {
     public int getDecimalValue(ListNode head) {
-        int value = head.val;
-        head = head.next;
+        int value = 0;
         while (head != null) {
             value <<= 1;
             value += head.val;
