@@ -3,9 +3,10 @@ class Solution {
         List<Integer> res = new ArrayList<>();
         quickSort(nums,0,nums.length-1);
         for(int i=0;i<nums.length;i++){
-            if(nums[i] == target){
+            int num = nums[i]; 
+            if(num == target){
                 res.add(i);
-            }else if(nums[i] > target){
+            }else if(num > target){
                 break;
             }
         }
