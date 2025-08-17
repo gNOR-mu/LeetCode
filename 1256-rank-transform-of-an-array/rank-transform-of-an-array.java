@@ -7,7 +7,8 @@ class Solution {
         int[] arr2 = Arrays.copyOf(arr, arr.length);
         int[] rank = new int[arr.length];
         int ranking = 1;
-        quickSort(arr2, 0, arr.length - 1);
+        // quickSort(arr2, 0, arr.length - 1);
+        Arrays.sort(arr2);
         for (int i = 0; i < arr2.length; i++) {
             if (!r.containsKey(arr2[i])) {
                 r.put(arr2[i], ranking++);
