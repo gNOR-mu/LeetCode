@@ -1,8 +1,7 @@
 class Solution {
     public List<Integer> targetIndices(int[] nums, int target) {
         List<Integer> res = new ArrayList<>();
-        // quickSort(nums,0,nums.length-1);
-        Arrays.sort(nums);
+        quickSort(nums,0,nums.length-1);
         for(int i=0;i<nums.length;i++){
             if(nums[i] == target){
                 res.add(i);
