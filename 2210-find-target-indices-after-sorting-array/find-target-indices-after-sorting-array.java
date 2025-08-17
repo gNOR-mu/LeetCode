@@ -3,11 +3,8 @@ class Solution {
         List<Integer> res = new ArrayList<>();
         quickSort(nums,0,nums.length-1);
         for(int i=0;i<nums.length;i++){
-            int num = nums[i]; 
-            if(num == target){
+            if(nums[i] == target){
                 res.add(i);
-            }else if(num > target){
-                break;
             }
         }
         return res;
