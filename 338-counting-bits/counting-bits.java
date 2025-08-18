@@ -5,7 +5,7 @@ class Solution {
             return res;
         }
         for (int i = 1; i < res.length; i++) {
-            res[i] = res[i / 2] + (i & 1);
+            res[i] = (i & 1) == 0 ? res[i>>1] : res[i - 1] + 1;
         }
         return res;
     }
