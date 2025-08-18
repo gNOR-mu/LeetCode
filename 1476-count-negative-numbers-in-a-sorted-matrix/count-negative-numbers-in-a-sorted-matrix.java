@@ -4,12 +4,11 @@ class Solution {
         int last = 0;
         for (int i = grid.length - 1; i >= 0; i--) {
             for (int j = grid[i].length - 1; j >= last; j--) {
-                if (grid[i][j] < 0) {
-                    neg++;
-                } else {
-                    last = j-1;
+                if (grid[i][j] >= 0) {
+                    last = j + 1;
                     break;
                 }
+                neg++;
             }
         }
         return neg;
