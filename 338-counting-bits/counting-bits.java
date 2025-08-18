@@ -1,12 +1,8 @@
 class Solution {
     public int[] countBits(int n) {
         int[] res = new int[n + 1];
-        if (n == 0) {
-            return res;
-        }
-        for (int i = 1; i < res.length; i++) {
-                        res[i] = (i % 2) == 0? res[i / 2] : res[i - 1]+1;
-            // res[i] = res[i / 2] + (i & 1);
+        for (int i = 1; i <= n; i++) {
+            res[i] = res[i >> 1] + (i & 1);
         }
         return res;
     }
