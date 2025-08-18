@@ -1,5 +1,6 @@
 class Solution {
     public boolean findRotation(int[][] mat, int[][] target) {
+        rotate(mat);
         if (Arrays.deepEquals(mat, target)){
             return true;
         }
