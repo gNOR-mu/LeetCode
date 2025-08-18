@@ -1,10 +1,19 @@
 class Solution {
     public boolean findRotation(int[][] mat, int[][] target) {
-        for (int i = 0; i < 4; i++) {
-            rotate(mat);
-            if (Arrays.deepEquals(mat, target)) {
-                return true;
-            }
+        if (Arrays.deepEquals(mat, target)){
+            return true;
+        }
+        rotate(mat);
+        if (Arrays.deepEquals(mat, target)){
+            return true;
+        }
+        rotate(mat);
+        if (Arrays.deepEquals(mat, target)){
+            return true;
+        }
+        rotate(mat);
+        if (Arrays.deepEquals(mat, target)){
+            return true;
         }
         return false;
     }
