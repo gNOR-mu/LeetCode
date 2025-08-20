@@ -8,12 +8,15 @@ class Solution {
             }
             return b.compareTo(a);
         };        PriorityQueue<String> pq = new PriorityQueue<>(comp);
-        for (int i = 0; i < nums.length; i++) {
-            pq.add(nums[i]);
-        }
-        for (int i = 1; i < k; i++) {
-            pq.poll();
-        }
-        return pq.peek();
+               // PriorityQueue<String> pq = new PriorityQueue<>(comp);
+        // for (int i = 0; i < nums.length; i++) {
+        // pq.add(nums[i]);
+        // }
+        // for (int i = 1; i < k; i++) {
+        // pq.poll();
+        // }
+        // return pq.peek();
+        Arrays.sort(nums, comp);
+        return nums[k - 1];
     }
 }
