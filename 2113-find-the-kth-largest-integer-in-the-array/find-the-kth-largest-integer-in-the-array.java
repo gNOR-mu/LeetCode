@@ -2,8 +2,12 @@ import java.math.BigInteger;
 
 class Solution {
     public String kthLargestNumber(String[] nums, int k) {
-        Comparator<String> comp = (a, b) -> new BigInteger(b).compareTo(new BigInteger(a));
-        PriorityQueue<String> pq = new PriorityQueue<>(comp);
+        Comparator<String> comp = (a, b) -> {
+            if (a.length() != b.length()) {
+                return b.length() - a.length();
+            }
+            return b.compareTo(a);
+        };        PriorityQueue<String> pq = new PriorityQueue<>(comp);
         for (int i = 0; i < nums.length; i++) {
             pq.add(nums[i]);
         }
