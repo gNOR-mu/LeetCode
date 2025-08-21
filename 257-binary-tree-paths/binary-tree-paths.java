@@ -17,13 +17,7 @@ class Solution {
 
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> list = new ArrayList<>();
-        String path = "" + root.val;
-        if (root.left == null && root.right == null) {
-            list.add(path);
-            return list;
-        }
-        paths(root.left, list, path);
-        paths(root.right, list, path);
+        paths(root, list, "");
         return list;
     }
 
@@ -31,10 +25,11 @@ class Solution {
         if (root == null) {
             return;
         }
-        path += "->" + root.val;
+        path += root.val;
         if (root.left == null && root.right == null) {
             list.add(path);
         }
+        path += "->";
         paths(root.left, list, path);
         paths(root.right, list, path);
     }
