@@ -15,21 +15,30 @@
  */
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> list = new ArrayList<>();
-        bsf(root, 0, list);
-        return list;
-    }
-
-    private void bsf(TreeNode root, int level, List<List<Integer>> list) {
         if (root == null) {
-            return;
+            return new ArrayList<>();
         }
-        if (list.size() <= level) {
-            list.add(new ArrayList<>());
-        }
-        list.get(level).add(root.val);
+        Queue<TreeNode> q = new LinkedList<>();
+        List<List<Integer>> res = new ArrayList<>();
 
-        bsf(root.left, level + 1, list);
-        bsf(root.right, level + 1, list);
+        q.offer(root);
+        int level = 0;
+        while (!q.isEmpty()) {
+            int size = q.size();
+            res.add(new ArrayList<>());
+            for (int i = 0; i < size; i++) {
+                TreeNode node = q.poll();
+                res.get(level).add(node.val);
+                if (node.left != null) {
+                    q.offer(node.left);
+                }
+                if(node.right !=null){
+                    q.offer(node.right);
+                }
+            }
+            level++;
+        }
+        return res;
     }
+
 }
