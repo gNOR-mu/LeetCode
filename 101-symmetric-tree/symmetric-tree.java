@@ -15,29 +15,45 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
+        // Queue<TreeNode> q = new LinkedList<>();
+        // q.offer(root);
 
-        while (!q.isEmpty()) {
-            int size = q.size();
-            List<Integer> list = new ArrayList<>();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = q.poll();
-                if (node != null) {
-                    list.add(node.val);
-                } else {
-                    list.add(-101);
-                    continue;
-                }
-                q.offer(node.left);
-                q.offer(node.right);
-            }
-            for (int i = 0; i < list.size() / 2; i++) {
-                if (list.get(i) != list.get(list.size() - 1 - i)) {
-                    return false;
-                }
-            }
+        // while (!q.isEmpty()) {
+        //     int size = q.size();
+        //     List<Integer> list = new ArrayList<>();
+        //     for (int i = 0; i < size; i++) {
+        //         TreeNode node = q.poll();
+        //         if (node != null) {
+        //             list.add(node.val);
+        //         } else {
+        //             list.add(-101);
+        //             continue;
+        //         }
+        //         q.offer(node.left);
+        //         q.offer(node.right);
+        //     }
+        //     for (int i = 0; i < list.size() / 2; i++) {
+        //         if (list.get(i) != list.get(list.size() - 1 - i)) {
+        //             return false;
+        //         }
+        //     }
+        // }
+        // return true;
+        if(root==null){
+            return true;
         }
-        return true;
+        return isSymmetric(root.left, root.right);
+    }
+
+    public boolean isSymmetric(TreeNode left, TreeNode right) {
+        if (left == null && right == null) {
+            return true;
+        }
+        if (left == null || right == null) {
+            return false;
+        }
+        return left.val == right.val
+                && isSymmetric(left.left, right.right)
+                && isSymmetric(left.right, right.left);
     }
 }
