@@ -19,20 +19,14 @@ class Node {
 
 class Solution {
     public int maxDepth(Node root) {
-        return max(root, 0);
+        if (root == null) {
+            return 0;
+        }
+        int current = 1;
+        for (var c : root.children) {
+            current = Math.max(current, 1 + maxDepth(c));
+        }
+        return current;
     }
 
-    public int max(Node root, int level) {
-        if (root == null) {
-            return level;
-        }
-        int maxDepth = ++level;
-        for (var n : root.children) {
-            int nl = max(n, level);
-            if (nl > maxDepth) {
-                maxDepth = nl;
-            }
-        }
-        return maxDepth;
-    }
 }
