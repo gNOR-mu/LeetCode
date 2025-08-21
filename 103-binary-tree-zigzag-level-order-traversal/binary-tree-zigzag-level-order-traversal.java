@@ -22,8 +22,7 @@ class Solution {
         List<List<Integer>> list = new ArrayList<>();
 
         queue.offer(root);
-        int level = 0;
-
+        boolean reversed = false;
         while (!queue.isEmpty()) {
             int size = queue.size();
             List<Integer> levelList = new ArrayList<>();
@@ -31,7 +30,11 @@ class Solution {
             for (int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
                 //nivel par, lo agrego en orden normal
-                levelList.add(node.val);
+                if (!reversed) {
+                    levelList.add(node.val);
+                } else {
+                    levelList.add(0, node.val);
+                }
                 if (node.left != null) {
                     queue.offer(node.left);
                 }
@@ -39,12 +42,8 @@ class Solution {
                     queue.offer(node.right);
                 }
             }
-            if ((level & 1) == 0) {
-                list.add(levelList);
-            } else {
-                list.add(levelList.reversed());
-            }
-            level++;
+            reversed = !reversed;
+            list.add(levelList);
         }
         return list;
     }
