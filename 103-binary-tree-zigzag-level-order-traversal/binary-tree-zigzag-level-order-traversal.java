@@ -24,26 +24,26 @@ class Solution {
         queue.offer(root);
         int level = 0;
 
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             int size = queue.size();
             List<Integer> levelList = new ArrayList<>();
 
-            for(int i=0;i<size;i++){
+            for (int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
-                if((level&1)==0){
-                    //nivel par, lo agrego en orden normal
-                    levelList.add(node.val);
-                }else{
-                    levelList.add(0,node.val);
-                }
-                if(node.left != null){
+                //nivel par, lo agrego en orden normal
+                levelList.add(node.val);
+                if (node.left != null) {
                     queue.offer(node.left);
                 }
-                if(node.right != null){
+                if (node.right != null) {
                     queue.offer(node.right);
                 }
             }
-            list.add(levelList);
+            if ((level & 1) == 0) {
+                list.add(levelList);
+            } else {
+                list.add(levelList.reversed());
+            }
             level++;
         }
         return list;
