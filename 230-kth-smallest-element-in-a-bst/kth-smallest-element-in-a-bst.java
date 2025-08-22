@@ -14,27 +14,25 @@
  * }
  */
 class Solution {
-    public int kthSmallest(TreeNode root, int k) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
+    private int total = 0;
+    private int val = 0;
 
-        while (!q.isEmpty()) {
-            int size = q.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = q.poll();
-                if (node.left != null) {
-                    q.offer(node.left);
-                }
-                if (node.right != null) {
-                    q.offer(node.right);
-                }
-                pq.add(node.val);
-            }
+    public int kthSmallest(TreeNode root, int k) {
+        find(root, k);
+        return val;
+    }
+
+    private void find(TreeNode root, int k) {
+        if (root == null) {
+            return;
         }
-        for (int i = 1; i < k; i++) {
-            pq.remove();
+        find(root.left, k);
+        total++;
+        if (total == k) {
+            val = root.val;
+            return;
         }
-        return pq.peek();
+        find(root.right, k);
+
     }
 }
