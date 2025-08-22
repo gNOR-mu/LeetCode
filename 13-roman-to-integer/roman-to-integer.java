@@ -20,15 +20,15 @@ class Solution {
 
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            int val = 0;
-            if ((c == 'I' || c == 'X' || c == 'C') && i < s.length() - 1) {
-                String s2 = "" + c + s.charAt(i + 1);
-                if (comp.containsKey(s2)) {
-                    num += comp.get(s2);
+            if (i < s.length() - 1) {
+                String next = c + "" + s.charAt(i + 1);
+                if (comp.containsKey(next)) {
+                    num += comp.get(next);
                     i++;
                     continue;
                 }
             }
+
             num += map.get(c);
 
         }
