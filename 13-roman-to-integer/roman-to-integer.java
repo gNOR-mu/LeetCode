@@ -1,25 +1,26 @@
 class Solution {
     public int romanToInt(String s) {
-        int num = 0;
-        Map<Character, Integer> map = Map.of(
-                'I', 1,
-                'V', 5,
-                'X', 10,
-                'L', 50,
-                'C', 100,
-                'D', 500,
-                'M', 1000);
+        int sum = 0;
+        int prev = 0;
 
-        for (int i = 0; i < s.length(); i++) {
-            int actual = map.get(s.charAt(i));
-            int next = (i < s.length() - 1) ? map.get(s.charAt(i + 1)) : 0;
-
-            if (actual < next) {
-                num -= actual;
-            } else {
-                num += actual;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            int num = 0;
+            switch (s.charAt(i)) {
+                case 'I' -> num = 1;
+                case 'V' -> num = 5;
+                case 'X' -> num = 10;
+                case 'L' -> num = 50;
+                case 'C' -> num = 100;
+                case 'D' -> num = 500;
+                case 'M' -> num = 1000;
             }
+            if (num < prev) {
+                sum -= num;
+            } else {
+                sum += num;
+            }
+            prev = num;
         }
-        return num;
+        return sum;
     }
 }
