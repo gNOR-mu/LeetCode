@@ -17,6 +17,7 @@ class Solution {
     public boolean findTarget(TreeNode root, int k) {
         List<Integer> list = new ArrayList();
         sortValues(root, list);
+        System.out.println(list.toString());
         int left = 0;
         int right = list.size() - 1;
         while (left < right) {
