@@ -32,7 +32,7 @@ class BSTIterator {
     }
     
     public boolean hasNext() {
-        return queue.size() >0;
+        return !queue.isEmpty();
     }
 }
 
