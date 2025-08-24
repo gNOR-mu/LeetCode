@@ -14,21 +14,25 @@
  * }
  */
 class Solution {
+    private int val;
+    private int tmp;
     public int kthSmallest(TreeNode root, int k) {
-        TreeSet<Integer> ts = new TreeSet<>();
-        getVals(root, ts);
-        for (int i = 1; i < k; i++) {
-            ts.pollFirst();
-        }
-        return ts.first();
+        val = 0;
+        tmp = 0;
+        get(root,k);
+        return val;
     }
 
-    private void getVals(TreeNode root, TreeSet<Integer> ts) {
+    private void get(TreeNode root, int k) {
         if (root == null) {
             return;
         }
-        ts.add(root.val);
-        getVals(root.left, ts);
-        getVals(root.right, ts);
+        get(root.left, k);
+        tmp++;
+        if (tmp==k) {
+            val = root.val;
+            return;
+        }
+         get(root.right, k);
     }
 }
