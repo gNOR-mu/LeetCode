@@ -1,0 +1,8 @@
+-- Write your PostgreSQL query statement below
+SELECT
+    SELL_DATE,
+    COUNT(DISTINCT PRODUCT) AS NUM_SOLD,
+    STRING_AGG(DISTINCT product, ',') as products
+FROM ACTIVITIES
+GROUP BY SELL_DATE
+ORDER BY SELL_DATE
