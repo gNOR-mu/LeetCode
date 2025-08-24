@@ -17,9 +17,6 @@ class Solution {
     public int kthSmallest(TreeNode root, int k) {
         TreeSet<Integer> ts = new TreeSet<>();
         getVals(root, ts);
-        if (ts.size() < k) {
-            return -1;
-        }
         for (int i = 1; i < k; i++) {
             ts.pollFirst();
         }
