@@ -16,24 +16,23 @@
 class Solution {
 
     public int findSecondMinimumValue(TreeNode root) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        getVal(root,pq);
-        int val = pq.poll();
-        while(!pq.isEmpty()){
-            int v2 = pq.poll();
-            if(v2 != val){
-                return v2;
-            }
+        TreeSet<Integer> ts = new TreeSet<>();
+        getVal(root, ts);
+        if (ts.size() < 2) {
+            return -1;
         }
-        return -1;
+        ts.pollFirst();
+        return ts.first();
+
     }
-    private void getVal(TreeNode root, PriorityQueue<Integer> pq){
-        if(root==null){
+
+    private void getVal(TreeNode root, TreeSet<Integer> ts) {
+        if (root == null) {
             return;
         }
-        pq.offer(root.val);
+        ts.add(root.val);
 
-        getVal(root.left,pq);
-        getVal(root.right,pq);
+        getVal(root.left, ts);
+        getVal(root.right, ts);
     }
 }
