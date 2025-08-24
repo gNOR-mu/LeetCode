@@ -1,15 +1,15 @@
 class Solution {
     public boolean judgeCircle(String moves) {
-        int v = 0;
-        int h = 0;
-        for (char c:moves.toCharArray()) {
+        int[] mov = new int[2];
+        for (int i = 0; i < moves.length(); i++) {
+            char c = moves.charAt(i);
             switch (c) {
-                case 'U' -> v++;
-                case 'D' -> v--;
-                case 'L' -> h--;
-                case 'R' -> h++;
+                case 'U' -> mov[0]++;
+                case 'D' -> mov[0]--;
+                case 'L' -> mov[1]--;
+                case 'R' -> mov[1]++;
             }
         }
-        return v == 0 && h==0;
+        return mov[0] == 0 && mov[1] == 0;
     }
 }
