@@ -9,7 +9,6 @@ class Solution {
                 case 'R' -> mov[1]++;
             }
         }
-        if( mov[0] == 0 && mov[1]==0)return true;
-        return false;
+        return mov[0] == 0 && mov[1]==0;
     }
 }
