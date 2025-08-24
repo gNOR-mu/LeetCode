@@ -3,11 +3,11 @@ class Solution {
         // return s.toLowerCase();
         StringBuilder sb = new StringBuilder();
         for (char c : s.toCharArray()) {
-            if (c >= 65 && c <= 90) {
+            if (c <= 90 && c >= 65) {
                 c += 32;
-            } 
+            }
 
-                sb.append(c);
+            sb.append(c);
         }
         return sb.toString();
     }
