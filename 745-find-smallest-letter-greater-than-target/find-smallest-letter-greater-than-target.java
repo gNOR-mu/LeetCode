@@ -7,17 +7,12 @@ class Solution {
         //     }
         // }
         // return pq.size()>0?pq.poll():letters[0];
-        boolean[] dict = new boolean[26];
         for(char c:letters){
             if(c>target){
-                dict[c-'a'] = true;
+                return c;
             }
         }
-        for(int i=target-'a' +1;i<26;i++){
-            if(dict[i]){
-                return (char)(i+'a');
-            }
-        }
+
         return letters[0];
     }
 }
