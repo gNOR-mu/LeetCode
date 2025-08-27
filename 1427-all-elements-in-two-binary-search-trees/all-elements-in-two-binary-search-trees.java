@@ -20,7 +20,7 @@ class Solution {
         List<Integer> res = new ArrayList<>();
         addToList(root1, res);
         addToList(root2, res);
-        res.sort(null);
+        res.sort((a,b)->a-b);
 
 
         // int l = 0;
