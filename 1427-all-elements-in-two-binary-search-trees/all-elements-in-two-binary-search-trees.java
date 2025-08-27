@@ -18,12 +18,10 @@ class Solution {
         // List<Integer> l1 = new ArrayList<>();
         // List<Integer> l2 = new ArrayList<>();
         List<Integer> res = new ArrayList<>();
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        addToList(root1, pq);
-        addToList(root2, pq);
-        while(!pq.isEmpty()){
-            res.add(pq.poll());
-        }
+        addToList(root1, res);
+        addToList(root2, res);
+        res.sort(null);
+
 
         // int l = 0;
         // int r = 0;
@@ -49,12 +47,12 @@ class Solution {
         return res;
     }
 
-    private void addToList(TreeNode root, PriorityQueue<Integer> pq) {
+    private void addToList(TreeNode root, List<Integer> res) {
         if (root == null) {
             return;
         }
-        addToList(root.left, pq);
-        pq.offer(root.val);
-        addToList(root.right, pq);
+        addToList(root.left, res);
+        res.add(root.val);
+        addToList(root.right, res);
     }
 }
