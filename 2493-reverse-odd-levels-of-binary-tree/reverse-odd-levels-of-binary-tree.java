@@ -15,36 +15,21 @@
  */
 class Solution {
     public TreeNode reverseOddLevels(TreeNode root) {
-        Queue<TreeNode> q = new LinkedList<>();
-        boolean reverse = false;
-
-        q.offer(root);
-
-        while (!q.isEmpty()) {
-            Deque<TreeNode> tn = new ArrayDeque<>();
-            int size = q.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode first = q.poll();
-                tn.offer(first);
-                if (first.left != null) {
-                    q.offer(first.left);
-                }
-                if (first.right != null) {
-                    q.offer(first.right);
-                }
-            }
-            if (reverse) {
-                int tnSize = tn.size() / 2;
-                for (int i = 0; i < tnSize; i++) {
-                    TreeNode first = tn.pollFirst();
-                    TreeNode last = tn.pollLast();
-                    int tmp = first.val;
-                    first.val = last.val;
-                    last.val = tmp;
-                }
-            }
-            reverse = !reverse;
-        }
+        reverse(root.left, root.right, true);
         return root;
+
+    }
+
+    private void reverse(TreeNode left, TreeNode right, boolean reverse) {
+        if (left == null || right == null) {
+            return;
+        }
+        if (reverse) {
+            int tmp = left.val;
+            left.val = right.val;
+            right.val = tmp;
+        }
+        reverse(left.left, right.right, !reverse);
+        reverse(left.right, right.left, !reverse);
     }
 }
