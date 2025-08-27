@@ -24,23 +24,24 @@ class Solution {
 
         int l = 0;
         int r = 0;
-        while (l < l1.size() || r < l2.size()) {
-            if (l == l1.size()) {
-                res.add(l2.get(r++));
-            } else if (r == l2.size()) {
-                res.add(l1.get(l++));
+        while (l < l1.size() && r < l2.size()) {
+            int v1 = l1.get(l);
+            int v2 = l2.get(r);
+            if (v1 <= v2) {
+                l++;
+                res.add(v1);
             } else {
-                int v1 = l1.get(l);
-                int v2 = l2.get(r);
-                if (v1 <= v2) {
-                    l++;
-                    res.add(v1);
-                }else{
-                    r++;
-                    res.add(v2);
-                }
+                r++;
+                res.add(v2);
             }
-
+        }
+        while (l < l1.size()) {
+            res.add(l1.get(l));
+            l++;
+        }
+        while (r < l2.size()) {
+            res.add(l2.get(r));
+            r++;
         }
         return res;
     }
