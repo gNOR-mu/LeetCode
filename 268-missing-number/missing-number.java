@@ -6,9 +6,6 @@ class Solution {
         for(int i=0;i<l;i++){
             sum += nums[i];
         }
-        if(sum==total){
-            return 0;
-        }
         return total-sum;
     }
 }
