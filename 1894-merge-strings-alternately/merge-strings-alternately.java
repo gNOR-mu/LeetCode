@@ -10,13 +10,11 @@ class Solution {
             w1++;
             w2++;
         }
-        while (w1 < word1.length()) {
-            sb.append(word1.charAt(w1));
-            w1++;
+        if (w1 < word1.length()) {
+            sb.append(word1.substring(w1, word1.length()));
         }
-        while (w2 < word2.length()) {
-            sb.append(word2.charAt(w2));
-            w2++;
+        if (w2 < word2.length()) {
+            sb.append(word2.substring(w2, word2.length()));
         }
         return sb.toString();
 
