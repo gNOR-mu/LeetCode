@@ -17,7 +17,6 @@ class Solution {
     public String tree2str(TreeNode root) {
         StringBuilder sb = new StringBuilder();
         helper(root, sb);
-        System.out.println(sb);
         return sb.toString();
     }
 
