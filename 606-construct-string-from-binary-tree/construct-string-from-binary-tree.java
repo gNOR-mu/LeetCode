@@ -26,19 +26,18 @@ class Solution {
             return;
         }
         sb.append(root.val);
-        
+
         if (root.left != null) {
             sb.append('(');
-            helper(root.left,sb);
+            helper(root.left, sb);
             sb.append(')');
-        } 
-        if (root.left == null && root.right != null) {
-            sb.append("()(");
-            helper(root.right,sb);
-            sb.append(')');
-        } else if(root.right !=null) {
+        }
+        if (root.right != null) {
+            if (root.left == null) {
+                sb.append("()");
+            }
             sb.append('(');
-            helper(root.right,sb);
+            helper(root.right, sb);
             sb.append(')');
         }
 
