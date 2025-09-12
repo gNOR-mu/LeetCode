@@ -1,6 +1,6 @@
 class Solution {
     public String countAndSay(int n) {
-        String rle = "1";
+        StringBuilder rle = new StringBuilder("1");
         for (int i = 1; i < n; i++) {
             StringBuilder sb = new StringBuilder();
             int count = 1;
@@ -18,8 +18,8 @@ class Solution {
             }
             sb.append(count);
             sb.append(start);
-            rle = sb.toString();
+            rle = sb;
         }
-        return rle;
+        return rle.toString();
     }
 }
