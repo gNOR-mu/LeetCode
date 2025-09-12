@@ -10,12 +10,14 @@ class Solution {
                 if (c == start) {
                     count++;
                 } else {
-                    sb.append("" + count + start);
+                    sb.append(count);
+                    sb.append(start);
                     start = c;
                     count = 1;
                 }
             }
-            sb.append("" + count + start);
+            sb.append(count);
+            sb.append(start);
             rle = sb.toString();
         }
         return rle;
