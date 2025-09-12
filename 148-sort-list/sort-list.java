@@ -10,23 +10,24 @@
  */
 class Solution {
     public ListNode sortList(ListNode head) {
-        if(head==null){
+        if (head == null) {
             return null;
         }
-        PriorityQueue<ListNode> pq = new PriorityQueue<>((a,b)->a.val-b.val);
-        while(head != null){
-            ListNode tmp = head;
-            pq.offer(head);
+        List<ListNode> list = new ArrayList<>();
+        while (head != null) {
+            list.add(head);
             head = head.next;
-            tmp.next = null;
         }
-        ListNode res = pq.poll();
-        ListNode tmp = res;
-        while(!pq.isEmpty()){
-            tmp.next = pq.poll();
-            tmp = tmp.next;
+        list.sort((a, b) -> a.val - b.val);
+        ListNode first = list.get(0);
+        ListNode tmp = first;
+        for (int i = 1; i < list.size(); i++) {
+            ListNode next = list.get(i);
+            tmp.next = next;
+            tmp = next;
         }
-        return res;
+        tmp.next = null;
+        return first;
 
     }
 }
