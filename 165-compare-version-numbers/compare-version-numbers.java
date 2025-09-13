@@ -1,27 +1,26 @@
 class Solution {
     public int compareVersion(String version1, String version2) {
-        String[] sp1 = version1.split("\\.");
-        String[] sp2 = version2.split("\\.");
-        int max = Math.max(sp1.length, sp2.length);
-        String[] nsp1 = new String[max];
-        String[] nsp2 = new String[max];
-        System.arraycopy(sp1, 0, nsp1, 0, sp1.length);
-        System.arraycopy(sp2, 0, nsp2, 0, sp2.length);
+        int i = 0;
+        int j = 0;
+        while (i < version1.length() || j < version2.length()) {
+            int n1 = 0;
+            int n2 = 0;
+            while (i < version1.length() && version1.charAt(i) != '.') {
+                n1 = (n1 * 10) + (version1.charAt(i) - '0');
+                i++;
+            }
+            while (j < version2.length() && version2.charAt(j) != '.') {
+                n2 = (n2 * 10) + (version2.charAt(j) - '0');
+                j++;
+            }
 
-        for (int i = sp1.length; i < nsp1.length; i++) {
-            nsp1[i] = "0";
-        }
-        for (int i = sp2.length; i < nsp2.length; i++) {
-            nsp2[i] = "0";
-        }
-        for (int i = 0; i < max; i++) {
-            int val1 = Integer.valueOf(nsp1[i]);
-            int val2 = Integer.valueOf(nsp2[i]);
-            if (val1 > val2) {
+            if (n1 > n2) {
                 return 1;
-            } else if (val1 < val2) {
+            } else if (n1 < n2) {
                 return -1;
             }
+            i++;
+            j++;
         }
         return 0;
     }
