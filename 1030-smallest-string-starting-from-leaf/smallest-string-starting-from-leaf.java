@@ -18,21 +18,19 @@ class Solution {
         if (root == null) {
             return null;
         }
-        List<String> list = new ArrayList<>();
-        helper(root, "", list);
-        list.sort((a, b) -> a.compareTo(b));
-        return list.getFirst();
+        return helper(root, "");
     }
 
-    private void helper(TreeNode root, String path, List<String> list) {
+    private String helper(TreeNode root, String path) {
         if (root == null) {
-            return;
+            return ""+(char)(123);//z+1
         }
         path = (char) (root.val + 97) + path;
         if (root.left == null && root.right == null) {
-            list.add(path);
+            return path;
         }
-        helper(root.left, path, list);
-        helper(root.right, path, list);
+        String left = helper(root.left, path);
+        String right = helper(root.right, path);
+        return left.compareTo(right) < 0 ? left : right;
     }
 }
