@@ -27,10 +27,11 @@ class Solution {
         targetSum -= root.val;
         path.add(root.val);
         if(root.left == null && root.right==null && targetSum==0){
-            res.add(path);
+            res.add(new ArrayList(path));
         }
-        sum(root.left, targetSum, new ArrayList(path), res);
-        sum(root.right, targetSum, new ArrayList(path), res);
+        sum(root.left, targetSum, path, res);
+        sum(root.right, targetSum, path, res);
+        path.removeLast();
 
     }
 }
