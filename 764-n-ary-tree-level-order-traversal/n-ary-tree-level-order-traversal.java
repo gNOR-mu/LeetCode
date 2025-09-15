@@ -16,31 +16,25 @@ class Node {
     }
 };
 */
-
 class Solution {
     public List<List<Integer>> levelOrder(Node root) {
-        if (root == null) {
-            return new ArrayList<>();
-        }
-        Queue<Node> q = new LinkedList<>();
-        List<List<Integer>> res = new ArrayList<>();
 
-        q.offer(root);
-        int level = 0;
-        while (!q.isEmpty()) {
-            int size = q.size();
-            res.add(new ArrayList<>());
-            for (int i = 0; i < size; i++) {
-                Node node = q.poll();
-                res.get(level).add(node.val);
-                for(var n:node.children){
-                    if(n!=null){
-                        q.offer(n);
-                    }
-                }
-            }
-            level++;
+        List<List<Integer>> list = new ArrayList<>();
+        bsf(root, 0, list);
+        return list;
+    }
+
+    private void bsf(Node root, int level, List<List<Integer>> list) {
+        if (root == null) {
+            return;
         }
-        return res;
+        if (list.size() == level) {
+            list.add(new ArrayList<>());
+        }
+        list.get(level).add(root.val);
+
+        for(var c:root.children){
+            bsf(c,level+1,list);
+        }
     }
 }
