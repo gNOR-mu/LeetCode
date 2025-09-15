@@ -20,11 +20,11 @@ class Solution {
     public List<List<Integer>> levelOrder(Node root) {
 
         List<List<Integer>> list = new ArrayList<>();
-        bsf(root, 0, list);
+        helper(root, 0, list);
         return list;
     }
 
-    private void bsf(Node root, int level, List<List<Integer>> list) {
+    private void helper(Node root, int level, List<List<Integer>> list) {
         if (root == null) {
             return;
         }
@@ -34,7 +34,7 @@ class Solution {
         list.get(level).add(root.val);
 
         for(var c:root.children){
-            bsf(c,level+1,list);
+            helper(c,level+1,list);
         }
     }
 }
