@@ -18,26 +18,24 @@ class Solution {
         if (root == null) {
             return 0;
         }
-        return helper(root, new ArrayList<>());
+        return helper(root, root.val, root.val);
     }
 
-    private int helper(TreeNode root, List<Integer> ancestors) {
+    private int helper(TreeNode root, int min, int max) {
         if (root == null) {
-            return Integer.MIN_VALUE;
+            return 0;
         }
-        int maxDiff = 0;
-        for (Integer i : ancestors) {
-            int diff = Math.abs(root.val - i);
-            if (diff > maxDiff) {
-                maxDiff = diff;
-            }
+        if (root.val < min) {
+            min = root.val;
         }
-        ancestors.add(root.val);
-        int left = helper(root.left, ancestors);
-        int right = helper(root.right, ancestors);
-        ancestors.removeLast();
-        maxDiff = Math.max(maxDiff, left);
-        maxDiff = Math.max(maxDiff, right);
-        return maxDiff;
+        if (root.val > max) {
+            max = root.val;
+        }
+        int diff = max - min;
+        int left = helper(root.left, min, max);
+        int right = helper(root.right, min, max);
+        diff = Math.max(diff, left);
+        diff = Math.max(diff, right);
+        return diff;
     }
 }
