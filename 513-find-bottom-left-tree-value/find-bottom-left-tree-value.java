@@ -31,8 +31,9 @@ class Solution {
             res.set(root.val);
             maxLevel.set(level);
         }
+        level++;
 
-        helper(root.left, level + 1, maxLevel, res);
-        helper(root.right, level + 1, maxLevel, res);
+        helper(root.left, level, maxLevel, res);
+        helper(root.right, level, maxLevel, res);
     }
 }
