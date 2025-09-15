@@ -18,17 +18,17 @@ class Solution {
         Map<Integer, Integer> sums = new HashMap<>();
         helper(root, 0, sums);
         int[] level = {
-                0, // nivel
+                1, // nivel
                 sums.get(0) // suma
         };
         for (int i = 1; i < sums.size(); i++) {
             int sum = sums.get(i);
             if (sum > level[1]) {
-                level[0] = i;
+                level[0] = i+1;
                 level[1] = sum;
             }
         }
-        return level[0] + 1;
+        return level[0];
 
     }
 
