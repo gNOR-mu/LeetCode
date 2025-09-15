@@ -27,21 +27,14 @@ class Solution {
         if (root == null) {
             return;
         }
-        boolean isFirstMaxLevel = false;
         // en caso de que vuelva a visitar otro nodo con el mismo nivel
         // se va a considerar como falso, por lo tanto no evalua su valor
-        if (level > data[1]) {
-            data[0] = null;
+        if (level > data[1] ) {
+            data[0] = root.val;
             data[1] = level;
-            isFirstMaxLevel = true;
         }
-        if (isFirstMaxLevel && (root.left != null || root.right != null)) {
-            data[0] = null;
-        }
+
         helper(root.left, level + 1, data);
         helper(root.right, level + 1, data);
-        if (level == data[1] && isFirstMaxLevel ) {
-            data[0] = root.val;
-        }
     }
 }
