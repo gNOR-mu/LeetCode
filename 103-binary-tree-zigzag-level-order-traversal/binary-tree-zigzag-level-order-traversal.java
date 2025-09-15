@@ -47,11 +47,11 @@ class Solution {
         // }
         // return list;
         List<List<Integer>> list = new ArrayList<>();
-        helper(root, 0, list, false);
+        helper(root, 0, list);
         return list;
     }
 
-    private void helper(TreeNode root, int level, List<List<Integer>> list, boolean reverse) {
+    private void helper(TreeNode root, int level, List<List<Integer>> list) {
         if (root == null) {
             return;
         }
@@ -59,9 +59,9 @@ class Solution {
             list.add(new ArrayList<>());
         }
         var listLevel = list.get(level);
-        int pos = reverse ? 0 : listLevel.size();
+        int pos = (level & 1) == 1 ? 0 : listLevel.size();
         listLevel.add(pos, root.val);
-        helper(root.left, level + 1, list, !reverse);
-        helper(root.right, level + 1, list, !reverse);
+        helper(root.left, level + 1, list);
+        helper(root.right, level + 1, list);
     }
 }
