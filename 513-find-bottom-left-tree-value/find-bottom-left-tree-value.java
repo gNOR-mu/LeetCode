@@ -14,28 +14,34 @@
  * }
  */
 class Solution {
-    Integer res;
-    Integer maxLevel;
-
     public int findBottomLeftValue(TreeNode root) {
-        res = null;
-        maxLevel = 0;
-        helper(root, 0);
-        return res;
+        Integer[] data = {
+                0, // val
+                0, // max level
+        };
+        helper(root, 1, data);
+        return data[0];
     }
 
-    private void helper(TreeNode root, int level) {
+    private void helper(TreeNode root, int level, Integer[] data) {
         if (root == null) {
             return;
         }
-        maxLevel = Math.max(level, maxLevel);
-        if (level == maxLevel && (root.left != null || root.right != null)) {
-            res = null;
+        boolean isFirstMaxLevel = false;
+        // en caso de que vuelva a visitar otro nodo con el mismo nivel
+        // se va a considerar como falso, por lo tanto no evalua su valor
+        if (level > data[1]) {
+            data[0] = null;
+            data[1] = level;
+            isFirstMaxLevel = true;
         }
-        helper(root.left, level + 1);
-        helper(root.right, level + 1);
-        if (level == maxLevel && res == null) {
-            res = root.val;
+        if (isFirstMaxLevel && (root.left != null || root.right != null)) {
+            data[0] = null;
+        }
+        helper(root.left, level + 1, data);
+        helper(root.right, level + 1, data);
+        if (level == data[1] && isFirstMaxLevel ) {
+            data[0] = root.val;
         }
     }
 }
