@@ -18,26 +18,42 @@ class Solution {
         if (root == null) {
             return new ArrayList<>();
         }
-        Queue<TreeNode> q = new LinkedList<>();
-        List<List<Integer>> list = new ArrayList<>();
-        q.offer(root);
+        // Queue<TreeNode> q = new LinkedList<>();
+        // List<List<Integer>> list = new ArrayList<>();
+        // q.offer(root);
 
-        while (!q.isEmpty()) {
-            int size = q.size();
-            List<Integer> levelList = new ArrayList<>();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = q.poll();
-                levelList.add(node.val);
-                if (node.left != null) {
-                    q.offer(node.left);
-                }
-                if (node.right != null) {
-                    q.offer(node.right);
-                }
-            }
-            list.add(0, levelList);
-        }
+        // while (!q.isEmpty()) {
+        //     int size = q.size();
+        //     List<Integer> levelList = new ArrayList<>();
+        //     for (int i = 0; i < size; i++) {
+        //         TreeNode node = q.poll();
+        //         levelList.add(node.val);
+        //         if (node.left != null) {
+        //             q.offer(node.left);
+        //         }
+        //         if (node.right != null) {
+        //             q.offer(node.right);
+        //         }
+        //     }
+        //     list.add(0, levelList);
+        // }
+        // return list;
+        List<List<Integer>> list = new ArrayList<>();
+        helper(root, 1, list);
         return list;
+
+    }
+
+    private void helper(TreeNode root, int level, List<List<Integer>> list) {
+        if (root == null) {
+            return;
+        }
+        if (list.size() < level) {
+            list.add(0, new ArrayList<>());
+        }
+        list.get(list.size() - level).add(root.val);
+        helper(root.left, level + 1, list);
+        helper(root.right, level + 1, list);
 
     }
 }
