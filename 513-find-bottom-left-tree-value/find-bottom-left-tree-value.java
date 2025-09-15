@@ -15,25 +15,27 @@
  */
 class Solution {
     public int findBottomLeftValue(TreeNode root) {
-
-        AtomicInteger res = new AtomicInteger(0);
-        helper(root, 1, new AtomicInteger(0), res);
-        return res.get();
+        int[] data = {
+                0, // res
+                0 //max level
+        };
+        helper(root, 1, data);
+        return data[0];
     }
 
-    private void helper(TreeNode root, int level, AtomicInteger maxLevel, AtomicInteger res) {
+    private void helper(TreeNode root, int level, int[] data) {
         if (root == null) {
             return;
         }
         // en caso de que vuelva a visitar otro nodo con el mismo nivel
         // se va a considerar como falso, por lo tanto no evalua su valor
-        if (level > maxLevel.get()) {
-            res.set(root.val);
-            maxLevel.set(level);
+        if (level > data[1]) {
+            data[0] = root.val;
+            data[1] = level;
         }
         level++;
 
-        helper(root.left, level, maxLevel, res);
-        helper(root.right, level, maxLevel, res);
+        helper(root.left, level, data);
+        helper(root.right, level, data);
     }
 }
