@@ -25,17 +25,12 @@ class Solution {
         if (root == null) {
             return 0;
         }
-        if (root.val < min) {
-            min = root.val;
-        }
-        if (root.val > max) {
-            max = root.val;
-        }
+        min = Math.min(min, root.val);
+        max = Math.max(max, root.val);
+
         int diff = max - min;
-        int left = helper(root.left, min, max);
-        int right = helper(root.right, min, max);
-        diff = Math.max(diff, left);
-        diff = Math.max(diff, right);
+        diff = Math.max(diff, helper(root.left, min, max));
+        diff = Math.max(diff, helper(root.right, min, max));
         return diff;
     }
 }
