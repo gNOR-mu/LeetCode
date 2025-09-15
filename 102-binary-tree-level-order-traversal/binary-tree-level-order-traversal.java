@@ -39,7 +39,7 @@ class Solution {
         // }
         // return res;
         List<List<Integer>> list = new ArrayList<>();
-        helper(root, 1, list);
+        helper(root, 0, list);
         return list;
     }
 
@@ -47,10 +47,10 @@ class Solution {
         if (root == null) {
             return;
         }
-        if (list.size() < level) {
+        if (list.size() == level) {
             list.add(new ArrayList<>());
         }
-        list.get(level - 1).add(root.val);
+        list.get(level).add(root.val);
         helper(root.left, level + 1, list);
         helper(root.right, level + 1, list);
     }
