@@ -18,23 +18,16 @@ class Solution {
         if (root == null) {
             return new ArrayList<>();
         }
-        List<List<Integer>> res = new ArrayList<>();
         Map<Integer, List<Integer[]>> map = new TreeMap<>();
         helper(root, 0, 0, map);
-        for (var v : map.values()) {
-            v.sort((a, b) -> {
-                if (a[1] != b[1]) {
-                    return a[1] - b[1];
-                } else {
-                    return a[0] - b[0];
-                }
-            });
-            List<Integer> list = new ArrayList<>();
-            for (var v2 : v) {
-                list.add(v2[0]);
-            }
-            res.add(list);
-        }
+        List<List<Integer>> res = map.values().stream()
+                .map(v -> v.stream()
+                        .sorted(Comparator.comparingInt(arr -> ((Integer[]) arr)[1])
+                                .thenComparingInt(arr -> ((Integer[]) arr)[0]))
+                        .map(arr -> ((Integer[]) arr)[0])
+                        .collect(Collectors.toList()))
+                .collect(Collectors.toList());
+
         return res;
 
     }
