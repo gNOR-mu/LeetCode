@@ -20,7 +20,7 @@ class Solution {
         }
         List<List<Integer>> res = new ArrayList<>();
         Map<Integer, List<Integer[]>> map = new TreeMap<>();
-        helper(root, 0,0, map);
+        helper(root, 0, 0, map);
         for (var v : map.values()) {
             v.sort((a, b) -> {
                 if (a[1] != b[1]) {
@@ -30,7 +30,7 @@ class Solution {
                 }
             });
             List<Integer> list = new ArrayList<>();
-            for(var v2:v){
+            for (var v2 : v) {
                 list.add(v2[0]);
             }
             res.add(list);
@@ -43,9 +43,7 @@ class Solution {
         if (root == null) {
             return;
         }
-        var v = map.getOrDefault(col, new ArrayList<>());
-        v.add(new Integer[] { root.val, level });
-        map.put(col, v);
+        map.computeIfAbsent(col, _ -> new ArrayList<>()).add(new Integer[] { root.val, level });
         helper(root.left, level + 1, col - 1, map);
         helper(root.right, level + 1, col + 1, map);
     }
