@@ -15,41 +15,36 @@
  */
 class Solution {
     public int[] findFrequentTreeSum(TreeNode root) {
-        List<Integer> sums = new ArrayList<>();
         Map<Integer, Integer> map = new HashMap<>();
-        helper(root, sums);
-        boolean duplicates = false;
-        for (Integer i : sums) {
-            map.merge(i, 1, (a, _) -> a + 1);
-
-        }
-        sums.clear();
-        int maxFreq = 0;
+        helper(root, map);
+        List<Integer> max = new ArrayList<>();
+        int maxFreq = 1;
         for (Map.Entry<Integer, Integer> e : map.entrySet()) {
             int freq = e.getValue();
             if (freq > maxFreq) {
-                sums.clear();
+                max.clear();
                 maxFreq = freq;
             }
             if (freq == maxFreq) {
-                sums.add(e.getKey());
+                max.add(e.getKey());
             }
         }
-        int[] res = new int[sums.size()];
-        for (int i = 0; i < sums.size(); i++) {
-            res[i] = sums.get(i);
+        int[] res = new int[max.size()];
+        for (int i = 0; i < max.size(); i++) {
+            res[i] = max.get(i);
         }
         return res;
 
     }
 
-    private void helper(TreeNode root, List<Integer> sums) {
+    private void helper(TreeNode root, Map<Integer,Integer> map) {
         if (root == null) {
             return;
         }
-        sums.add(sumSubTree(root));
-        helper(root.left, sums);
-        helper(root.right, sums);
+        map.merge(sumSubTree(root), 1, (a, _) -> a + 1);
+
+        helper(root.left, map);
+        helper(root.right, map);
     }
 
     private int sumSubTree(TreeNode root) {
