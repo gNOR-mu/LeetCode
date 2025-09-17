@@ -23,13 +23,16 @@ class Solution {
         if (root == null) {
             return true;
         }
-        Integer previous = map.get(level);
         boolean isEven = (root.val & 1) == 0;
         boolean isEvenLevel = (level & 1) == 0;
-        if (isEvenLevel && (isEven || (previous != null && root.val <= previous))) {
-            return false;
-        } else if (!isEvenLevel && (!isEven || (previous != null && root.val >= previous))) {
-            return false;
+        if (isEvenLevel) {
+            if (isEven || (root.val <= map.getOrDefault(level, Integer.MIN_VALUE))) {
+                return false;
+            }
+        } else if (!isEvenLevel) {
+            if (!isEven || root.val >= map.getOrDefault(level, Integer.MAX_VALUE)) {
+                return false;
+            }
         }
         map.put(level, root.val);
         return helper(root.left, level + 1, map) && helper(root.right, level + 1, map);
