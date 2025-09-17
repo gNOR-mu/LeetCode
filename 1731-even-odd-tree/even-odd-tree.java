@@ -19,11 +19,22 @@ class Solution {
         boolean isEvenLevel = true;
         q.offer(root);
         while (!q.isEmpty()) {
-            List<Integer> level = new ArrayList<>();
             int size = q.size();
+            int min = Integer.MIN_VALUE;
+            int max = Integer.MAX_VALUE;
             for (int i = 0; i < size; i++) {
                 TreeNode node = q.poll();
-                level.add(node.val);
+                if (isEvenLevel) {
+                    if ((node.val & 1) == 0 || node.val <= min) {
+                        return false;
+                    }
+                    min = node.val;
+                } else if (!isEvenLevel) {
+                    if ((node.val & 1) == 1 || node.val >= max) {
+                        return false;
+                    }
+                    max = node.val;
+                }
                 if (node.left != null) {
                     q.offer(node.left);
                 }
@@ -31,23 +42,7 @@ class Solution {
                     q.offer(node.right);
                 }
             }
-            int previous = level.get(0);
-            boolean isEven = (previous & 1) == 0;
-            if (isEvenLevel && isEven) {
-                return false;
-            } else if (!isEvenLevel && !isEven) {
-                return false;
-            }
-            for (int i = 1; i < level.size(); i++) {
-                int val = level.get(i);
-                boolean isOdd = (val & 1) == 1;
-                if(isEvenLevel && (!isOdd || val<=previous)){
-                    return false;
-                }else if(!isEvenLevel && (isOdd || val>=previous)){
-                    return false;
-                }
-                previous = val;
-            }
+
             isEvenLevel = !isEvenLevel;
         }
         return true;
