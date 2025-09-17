@@ -15,26 +15,36 @@
  */
 class Solution {
     public boolean isEvenOddTree(TreeNode root) {
-        Map<Integer, Integer> map = new HashMap<>();
-        return helper(root, 0, map);
-    }
+        Queue<TreeNode> q = new LinkedList<>();
+        boolean isEvenLevel = true;
+        q.offer(root);
+        while (!q.isEmpty()) {
+            int size = q.size();
+            int min = Integer.MIN_VALUE;
+            int max = Integer.MAX_VALUE;
+            for (int i = 0; i < size; i++) {
+                TreeNode node = q.poll();
+                if (isEvenLevel) {
+                    if ((node.val & 1) == 0 || node.val <= min) {
+                        return false;
+                    }
+                    min = node.val;
+                } else if (!isEvenLevel) {
+                    if ((node.val & 1) == 1 || node.val >= max) {
+                        return false;
+                    }
+                    max = node.val;
+                }
+                if (node.left != null) {
+                    q.offer(node.left);
+                }
+                if (node.right != null) {
+                    q.offer(node.right);
+                }
+            }
 
-    private boolean helper(TreeNode root, int level, Map<Integer, Integer> map) {
-        if (root == null) {
-            return true;
+            isEvenLevel = !isEvenLevel;
         }
-        boolean isEven = (root.val & 1) == 0;
-        boolean isEvenLevel = (level & 1) == 0;
-        if (isEvenLevel) {
-            if (isEven || (root.val <= map.getOrDefault(level, Integer.MIN_VALUE))) {
-                return false;
-            }
-        } else if (!isEvenLevel) {
-            if (!isEven || root.val >= map.getOrDefault(level, Integer.MAX_VALUE)) {
-                return false;
-            }
-        }
-        map.put(level, root.val);
-        return helper(root.left, level + 1, map) && helper(root.right, level + 1, map);
+        return true;
     }
 }
