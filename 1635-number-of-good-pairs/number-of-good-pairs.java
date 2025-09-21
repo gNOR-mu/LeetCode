@@ -6,14 +6,18 @@ class Solution {
             int val = map.getOrDefault(nums[i],0)+1;
             map.put(nums[i],val);
         }
-        
-        for(int i=0;i<nums.length;i++){
-            int val = map.get(nums[i]) -1 ;
-            map.put(nums[i],val);
-            if(val>0){
-                res += val;
-            }
+
+        for(Integer val:map.values()){
+            val -=1;
+            res += (val*(val+1))/2;
         }
         return res;
+        /*
+        1: 3
+            1.  2
+            2.  1
+        2:1
+        3:2
+        */
     }
 }
