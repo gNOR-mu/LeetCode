@@ -8,8 +8,7 @@ class Solution {
         }
 
         for(Integer val:map.values()){
-            val -=1;
-            res += (val*(val+1))/2;
+            res += ((val-1)*(val))/2;
         }
         return res;
         /*
