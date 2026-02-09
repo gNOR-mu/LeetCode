@@ -9,7 +9,7 @@ class Solution {
                 list.add(ch);
             }
         }
-        list.sort(null);
+        Collections.sort(list);
 
         int idx = 0;
         for (char ch : s.toCharArray()) {
