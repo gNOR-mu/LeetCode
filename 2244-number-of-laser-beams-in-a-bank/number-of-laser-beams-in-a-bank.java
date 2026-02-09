@@ -1,6 +1,6 @@
 class Solution {
     public int numberOfBeams(String[] bank) {
-      if (bank.length == 0) {
+        if (bank.length == 0) {
             return 0;
         }
 
@@ -10,6 +10,7 @@ class Solution {
 
         for (int i = 1; i < bank.length; i++) {
             next = countDevices(bank[i]);
+
             if (next > 0) {
                 res += actual * next;
                 actual = next;
@@ -19,6 +20,12 @@ class Solution {
     }
 
     public long countDevices(String line) {
-        return line.chars().filter(c -> c == '1').count();
+        int total = 0;
+        for (char c : line.toCharArray()) {
+            if (c == '1') {
+                total++;
+            }
+        }
+        return total;
     }
 }
