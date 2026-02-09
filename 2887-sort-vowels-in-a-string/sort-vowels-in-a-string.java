@@ -1,21 +1,21 @@
 class Solution {
     public String sortVowels(String s) {
         String vowels = "aeiouAEIOU";
-        StringBuilder sb = new StringBuilder(s);
-        Queue<Character> queue = new PriorityQueue<>();
+        StringBuilder sb = new StringBuilder();
+        List<Character> list = new ArrayList<>();
 
         for (char ch : s.toCharArray()) {
             if (vowels.indexOf(ch) != -1) {
-                queue.offer(ch);
+                list.add(ch);
             }
+        }
+        list.sort(null);
+
+        int idx = 0;
+        for (char ch : s.toCharArray()) {
+            sb.append(vowels.indexOf(ch) != -1 ? list.get(idx++) : ch);
         }
 
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-            if (vowels.indexOf(ch) != -1) {
-                sb.replace(i, i + 1, "" + queue.poll());
-            }
-        }
         return sb.toString();
     }
 }
