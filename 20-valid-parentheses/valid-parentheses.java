@@ -3,16 +3,17 @@ class Solution {
         if (s.length() % 2 != 0) {
             return false;
         }
+        StringBuilder sb = new StringBuilder(s);
 
-        int prevLength;
+        int idx;
 
-        do {
-            prevLength = s.length();
-            s = s.replace("()", "")
-                    .replace("{}", "")
-                    .replace("[]", "");
-        } while (s.length() < prevLength);
+        while ((idx = sb.indexOf("()")) != -1 ||
+                (idx = sb.indexOf("{}")) != -1 ||
+                (idx = sb.indexOf("[]")) != -1) {
 
-        return s.isEmpty();
+            sb.delete(idx, idx + 2);
+        }
+
+        return sb.length() == 0;
     }
 }
