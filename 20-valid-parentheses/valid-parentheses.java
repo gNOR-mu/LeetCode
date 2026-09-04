@@ -3,17 +3,20 @@ class Solution {
         if (s.length() % 2 != 0) {
             return false;
         }
-        StringBuilder sb = new StringBuilder(s);
+        Deque<Character> stack = new ArrayDeque<>();
 
-        int idx;
-
-        while ((idx = sb.indexOf("()")) != -1 ||
-                (idx = sb.indexOf("{}")) != -1 ||
-                (idx = sb.indexOf("[]")) != -1) {
-
-            sb.delete(idx, idx + 2);
+        for (char c : s.toCharArray()) {
+            switch (c) {
+                case '(' -> stack.push(')');
+                case '{' -> stack.push('}');
+                case '[' -> stack.push(']');
+                default -> {
+                    if (stack.isEmpty() || stack.pop() != c) {
+                        return false;
+                    }
+                }
+            }
         }
-
-        return sb.length() == 0;
+        return stack.isEmpty();
     }
 }
