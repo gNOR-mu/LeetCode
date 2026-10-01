@@ -1,9 +1,14 @@
 class Solution {
     public int maxDistinct(String s) {
-        Set<Character> set = new HashSet<>();
-        for (int i = 0; i < s.length(); ++i) {
-            set.add(s.charAt(i));
+        int res = 0;
+        int[] freq = new int[26];
+
+        for(char c: s.toCharArray()){
+            if(freq[c - 'a']++ == 0 && ++res == 26){
+                break;
+            }
         }
-        return set.size();
+
+        return res;
     }
 }
