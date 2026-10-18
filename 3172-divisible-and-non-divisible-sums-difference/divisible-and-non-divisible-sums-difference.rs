@@ -4,8 +4,11 @@ impl Solution {
     let mut num2 = 0;
 
     for i in 1..=n{
-        num1 += if i%m == 0 {0} else { i };
-        num2 += if i%m == 0 {i} else { 0 };
+        if(i%m == 0){
+            num2 += i;
+        }else{
+            num1 += i;
+        }
     }
   
     num1 - num2 
